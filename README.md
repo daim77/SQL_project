@@ -39,5 +39,5 @@ weather
 lookup_table
 
 **required output**  
-t_{jméno}_{příjmení}_projekt_SQL_final  
+t_{jméno}_{příjmení}_project_SQL_final  
 prepared for one select operation

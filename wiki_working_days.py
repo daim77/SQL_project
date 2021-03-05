@@ -59,7 +59,7 @@ def data_to_frame(data):
         'working_days',
         'working_hrs_per_day'
     ]
-    df = pd.DataFrame(data, columns=header)
+    df = pd.DataFrame(data=data, columns=header)
 
     # working days coding as SQL DAYOFWEEK() 1: sunday, 7: saturday
     dict_values = {
@@ -82,12 +82,17 @@ def non_regular(df):
 
 
 def data_to_sql(df):
-    # df.set_index('country', inplace=True)
     user = "student"
     password = "p7@vw7MCatmnKjy7"
     conn_string = f"mysql+pymysql://{user}:{password}@data.engeto.com/data"
-    engeto_conn = db.create_engine(conn_string)
-    connection = engeto_conn.connect()
+    engeto_conn = db.create_engine(conn_string, echo=True)
+
+    db_connection = engeto_conn.connect()
+
+    df.to_sql('t_martin_danek_project_SQL_workingdays',
+              db_connection,
+              if_exists='replace', index=False)
+    db_connection.close()
     return
 
 
@@ -97,14 +102,7 @@ def main():
     df = data_to_frame(data)
     non_regular(df)
 
-    data_to_sql(data)
-
-    # print full DataFrame
-    # with pd.option_context(
-    #         'display.max_rows', None,
-    #         'display.max_columns', None
-    # ):
-    #     print(df)
+    data_to_sql(df)
 
 
 if __name__ == '__main__':
