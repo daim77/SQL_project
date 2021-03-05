@@ -1,4 +1,4 @@
-# SQL_project 
+# SQL_project
 **COVID ANALYSIS with panel data**  
 keys: country, date  
 
@@ -41,3 +41,10 @@ lookup_table
 **required output**  
 t_{jméno}_{příjmení}_project_SQL_final  
 prepared for one select operation
+
+## SOLUTION  
+**wiki_working_days.py**  
+This script scrap table from wiki and saves data to MariaDB database on server  
+Different country == different working days  
+coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday   
+

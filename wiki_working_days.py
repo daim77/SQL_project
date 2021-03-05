@@ -1,7 +1,7 @@
 import requests
 import bs4
 import pandas as pd
-from pprint import pprint as pp
+
 
 import sqlalchemy as db
 
