@@ -7,8 +7,6 @@ keys: country, date
 _covid data_  
 - country
 - diff confirmed cases
-- recovered
-- deaths
 - tests performed  
 
 _time related_
