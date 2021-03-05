@@ -11,8 +11,8 @@ _covid data_
 
 _time related_
 - date
-- binary variable for  weekend / working days
-- the four seasons codes (from 0 till 3) 
+- binary variable for  weekend / working days ! Israel  Islamic Nepal atc...
+- the four seasons codes (from 0 till 3)  ! Australia  
 
 _demografic related_
 - density population
@@ -24,7 +24,7 @@ _demografic related_
 - difference life expectancy 1965 compered to 2015  
 
 _weather related_  
-- average daylight temperature (SR to SS)
+- average daylight temperature  ! SR to SS
 - amount of hours with any precipitations
 - max gust wind effort during day
 
@@ -36,7 +36,7 @@ religions
 covid19_basic_differences
 covid19_testing
 weather
-lookup_table.
+lookup_table
 
 **required output**  
 t_{jméno}_{příjmení}_projekt_SQL_final  
