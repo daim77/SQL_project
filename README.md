@@ -11,8 +11,10 @@ _covid data_
 
 _time related_
 - date
-- binary variable for  weekend / working days ! Israel  Islamic Nepal atc...
-- the four seasons codes (from 0 till 3)  ! Australia  
+- binary variable for  weekend / working days ! Israel  Islamic Nepal atc...  
+  - 1 = working days, 0 = weekend
+- the four seasons codes (from 0 till 3) ! south hemisphere  
+  - 0 - winter, 1 - spring, 2 - summer, 3 - fall
 
 _demografic related_
 - density population
