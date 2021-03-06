@@ -63,7 +63,7 @@ def data_to_frame(data):
 
     # working days coding as SQL DAYOFWEEK() 1: sunday, 7: saturday
     dict_values = {
-        'Saturday-Wednesday': '7, 1, 2, 3, 4,',
+        'Saturday-Wednesday': '7, 1, 2, 3, 4',
         'Monday-Friday': '2, 3, 4, 5, 6',
         'Sunday-Thursday': '1, 2, 3, 4, 5',
         'Monday-Saturday': '2, 3, 4, 5, 6, 7',
