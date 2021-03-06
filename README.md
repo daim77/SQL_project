@@ -28,15 +28,16 @@ _weather related_
 - amount of hours with any precipitations
 - max gust wind effort during day
 
-**data source**
-countries
-economies
-life_expectancy
-religions
-covid19_basic_differences
-covid19_testing
-weather
-lookup_table
+**data source**  
+countries  
+economies  
+life_expectancy  
+religions  
+covid19_basic_differences  
+covid19_testing  
+weather  
+lookup_table  
+t_martin_danek_project_SQL_working_days /from WIKI  
 
 **required output**  
 t_{jméno}_{příjmení}_project_SQL_final  
