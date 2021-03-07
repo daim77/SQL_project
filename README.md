@@ -6,18 +6,16 @@ keys: country, date
 
 _covid data_  
 - country
-- diff confirmed cases
-- tests performed  
+- diff confirmed cases [amount, -]
+- tests performed  [amount, -]
 
 _time related_
-- date
-- binary variable for  weekend / working days ! Israel  Islamic Nepal atc...  
-  - 1 = working days, 0 = weekend
-- the four seasons codes (from 0 till 3) ! south hemisphere  
-  - 0 - winter, 1 - spring, 2 - summer, 3 - fall
+- date [yyyy-mm-dd]
+- binary variable for  weekend / working days [1 = working days, 0 = weekend]
+- the four seasons codes (from 0 till 3) [0 - winter, 1 - spring, 2 - summer, 3 - fall]
 
 _demografic related_
-- density population
+- density population [habitant / km2]
 - GDP per habitant
 - GINI coeficient  
 - child mortality
