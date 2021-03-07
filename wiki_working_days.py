@@ -37,7 +37,7 @@ def prepare_data(data_soup):
             counter = 0
             continue
         elif counter == 1:
-            data_sublist.append(item.split(' (')[0])
+            data_sublist.append(item.split(' (')[0].strip('*'))
             continue
         elif counter == 2:
             data_sublist.append(int(item.split()[0][:2]))
@@ -72,6 +72,7 @@ def data_to_frame(data):
         'Sunday-Friday': '1, 2, 3, 4, 5, 6'
     }
     df['working_days'] = df['working_days'].map(dict_values)
+
     return df
 
 
