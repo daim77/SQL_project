@@ -27,22 +27,4 @@ SELECT DAYOFYEAR('2020-012-21');
 SELECT * FROM covid19_basic AS cb WHERE cb.date = '2021-01-01' GROUP BY cb.country;
 
 
-# translate country for working_days
-# cd.country se musi podivat s Czechia do lt table pro iso3 a s iso3 do c table a porovnat cd.country=c.country
-# a nebo k wd table priradit iso3 formaty v pythonu
-
-SELECT cd.date,
-       (
-           SELECT
-                  if(INSTR(wd.working_days, CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
-           FROM t_martin_danek_project_SQL_workingdays AS wd
-           WHERE wd.country = cd.country
-       ) AS working_days,
-
-       cd.country
-
-FROM covid19_basic_differences AS cd
-
-WHERE cd.date BETWEEN CAST('2020-10-01' AS datetime) AND CAST('2020-11-01' AS datetime);
-
 
