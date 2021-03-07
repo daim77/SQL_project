@@ -16,12 +16,12 @@ _time related_
 
 _demografic related_
 - density population [habitant / km2]
-- GDP per habitant [year 2019, USD/habitant]
+- GDP per habitant [year 2019, USD/person]
 - GINI coeficient  [y 2019]
 - child mortality [per 1000 live birth in 2019]
-- population age median in 2018
+- population age median in 2018 - FIND SOLUTION - WIKI?
 - population religion ratio -> related to total country population
-- difference life expectancy 1965 compered to 2015  
+- difference life expectancy 1965 compered to 2015  [years]
 
 _weather related_  
 - average daylight temperature  ! SR to SS
