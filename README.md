@@ -50,5 +50,6 @@ This script scrap a table from wiki and saves data to MariaDB database on ENGETO
 Different country == different working days  
 coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday  
 Majority of values are added from year 2015. GINI index is available for MAX countries for example but still only for 80..  
+ISO3 country code added as key
 
 
