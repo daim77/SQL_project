@@ -83,8 +83,8 @@ def non_regular(df):
 
 
 def data_to_sql(df):
-    user = "student"
-    password = "p7@vw7MCatmnKjy7"
+    user = "user"
+    password = "password"
     conn_string = f"mysql+pymysql://{user}:{password}@data.engeto.com/data"
     engeto_conn = db.create_engine(conn_string, echo=True)
 

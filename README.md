@@ -44,8 +44,11 @@ t_{jméno}_{příjmení}_project_SQL_final
 prepared for one select operation
 
 ## SOLUTION  
+UNITS are in the square brackets in an assignment section  
 **wiki_working_days.py**  
-This script scrap table from wiki and saves data to MariaDB database on server  
+This script scrap a table from wiki and saves data to MariaDB database on ENGETO server  
 Different country == different working days  
-coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday   
+coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday  
+Majority of values are added from year 2015. GINI index is available for MAX countries for example but still only for 80..  
+
 
