@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/66b1efec-7db1-4bb0-bcae-70b32722d982/solution_II.sql">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="$APPLICATION_CONFIG_DIR$/consoles/db/66b1efec-7db1-4bb0-bcae-70b32722d982/tests.sql">
           <value>
             <Attribute>
