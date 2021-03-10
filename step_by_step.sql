@@ -1,11 +1,13 @@
 SELECT cd.date,
        cd.country,
+
        (
-       SELECT lt1.iso3
-       FROM lookup_table as lt1
-       WHERE lt1.country = cd.country AND lt1.province IS NULL
-       GROUP BY lt1.country
-           ) as ISO3,
+           SELECT lt1.iso3
+           FROM lookup_table as lt1
+           WHERE lt1.country = cd.country AND lt1.province IS NULL
+           GROUP BY lt1.country
+           )
+        as ISO3,
 
        if(INSTR(wdwd.working_days, CAST(dayofweek(cd.date) AS char)) != 0, 1, 0) as working_days,
 
@@ -25,7 +27,8 @@ SELECT cd.date,
            FROM lookup_table AS lt
            WHERE cd.country = lt.country AND lt.province IS NULL
            GROUP BY lt.country
-       ) AS year_season,
+       )
+        as year_season,
 
        cd.confirmed,
        ctct.tests_performed,
@@ -33,7 +36,30 @@ SELECT cd.date,
 
        round(ee.GDP / ee.population, 0) as GDP_per_capita_2015,
        ee.gini as GINI_index_2015,
-       ee.mortaliy_under5 as child_mortality_2015
+       ee.mortaliy_under5 as child_mortality_2015,
+
+        ROUND((
+            SELECT le1.life_expectancy
+            FROM life_expectancy as le1
+            WHERE le1.year = 2015
+            AND le1.iso3 = (
+                            SELECT lt.iso3
+                            FROM lookup_table as lt
+                            WHERE cd.country = lt.country AND lt.province IS NULL
+                            GROUP BY lt.country
+                            ))
+                    - (
+                        SELECT le2.life_expectancy
+                        FROM life_expectancy as le2
+                        WHERE le2.year = 1965
+                        AND le2.iso3 = (
+                                        SELECT lt1.iso3
+                                        FROM lookup_table as lt1
+                                        WHERE cd.country = lt1.country AND lt1.province IS NULL
+                                        GROUP BY lt1.country
+                            )
+                        ), 2)
+            as life_exp_diff
 
 
 FROM covid19_basic_differences as cd

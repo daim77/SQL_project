@@ -5,7 +5,7 @@ keys: country, date
 **COLUMNS:**  
 
 _covid data_  
-- country
+- country [name sometimes non standard]
 - diff confirmed cases [amount, -]
 - tests performed  [amount, -]
 
