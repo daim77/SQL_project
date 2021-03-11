@@ -70,7 +70,7 @@ SELECT cd.date,
 
 FROM covid19_basic_differences as cd
 
-# countries not in t_martin_danek_project_SQL_workingdays have NULL value
+# table for workingdays
 LEFT OUTER JOIN (
                 SELECT wd.country,
                        wd.working_days,

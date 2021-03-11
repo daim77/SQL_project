@@ -48,10 +48,13 @@ prepared for one select operation
 
 ## SOLUTION  
 UNITS are in the square brackets in an assignment section  
+
 **wiki_working_days.py**  
 This script scrap a table from wiki and saves data to MariaDB database on ENGETO server  
 Different country == different working days  
 coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday  
+IF country NOT in this table THEN saturday and sunday is weekend.
+
 Majority of values are available in year 2015 in table economies. GINI index is available for MAX countries for example but still only for 80..  
 But y2018 chosen due to client requirements  
 ISO3 country code added as key  
