@@ -18,10 +18,10 @@ _time related_
 
 _demografic related_
 - density population [habitant / km2]
-- GDP per habitant [year 2019, USD/person]
-- GINI coeficient  [y 2019]
-- child mortality [per 1000 live birth in 2019]
-- population age median in 2018 - FIND SOLUTION - WIKI?
+- GDP per habitant [year 2018, USD/person]
+- GINI coeficient  [y 2018]
+- child mortality [per 1000 live birth in 2018]
+- population age median in 2018 - FIND TABLE
 - population religion ratio -> related to total country population
 - difference life expectancy 1965 compered to 2015  [years]
 
@@ -39,7 +39,7 @@ covid19_basic_differences
 covid19_testing  
 weather  
 lookup_table  
-t_martin_danek_project_SQL_working_days /from WIKI  
+_t_martin_danek_project_SQL_working_days /from WIKI_  
 
 **required output**  
 t_{jméno}_{příjmení}_project_SQL_final  
@@ -51,7 +51,8 @@ UNITS are in the square brackets in an assignment section
 This script scrap a table from wiki and saves data to MariaDB database on ENGETO server  
 Different country == different working days  
 coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday  
-Majority of values are added from year 2015. GINI index is available for MAX countries for example but still only for 80..  
-ISO3 country code added as key
+Majority of values are available in year 2015 in table economies. GINI index is available for MAX countries for example but still only for 80..  
+But y2018 chosen due to client requirements  
+ISO3 country code added as key  
 
 
