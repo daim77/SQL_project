@@ -21,7 +21,7 @@ _demografic related_
 - GDP per habitant [year 2018, USD/person]
 - GINI coeficient  [y 2018]
 - child mortality [per 1000 live birth in 2018]
-- population age median in 2018 - FIND TABLE
+- population age median in 2018 [years]
 - population religion ratio -> related to total country population
 - difference life expectancy 1965 compered to 2015  [years]
 
@@ -39,6 +39,7 @@ covid19_basic_differences
 covid19_testing  
 weather  
 lookup_table  
+
 _t_martin_danek_project_SQL_working_days /from WIKI_  
 
 **required output**  
