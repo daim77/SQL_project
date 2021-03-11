@@ -1,4 +1,6 @@
-# SQL_project
+# SQL_project  
+**ASSIGNMENT SECTION**  
+
 **COVID ANALYSIS with panel data**  
 keys: country, date  
 
