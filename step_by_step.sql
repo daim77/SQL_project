@@ -7,16 +7,19 @@ SELECT cd.date,
            WHERE lt1.country = cd.country AND lt1.province IS NULL
            GROUP BY lt1.country
            )
-        as ISO3,
+           as ISO3,
 
        (
-           SELECT CASE WHEN wdwd.working_days IS NOT NULL THEN
-                        if(INSTR(wdwd.working_days, CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
-                    ELSE
-                        if(INSTR('2, 3, 4, 5, 6', CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
-                    END
+           SELECT
+                  CASE
+                      WHEN wdwd.working_days IS NOT NULL
+                          THEN
+                          if(INSTR(wdwd.working_days, CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
+                      ELSE
+                          if(INSTR('2, 3, 4, 5, 6', CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
+                      END
            )
-        as working_days,
+           as working_days,
 
        (
            SELECT CASE
@@ -34,8 +37,8 @@ SELECT cd.date,
            FROM lookup_table AS lt
            WHERE cd.country = lt.country AND lt.province IS NULL
            GROUP BY lt.country
-       )
-        as year_season,
+           )
+           as year_season,
 
        cd.confirmed,
        ctct.tests_performed,
@@ -121,7 +124,7 @@ on cc.iso3 = (
                 GROUP BY lt2.country
         )
 
-# fetching data from econimies, indexes level 2015
+# fetching data from econimies, indexes level 2018
 LEFT OUTER JOIN (
                 SELECT e.gini,
                        e.GDP,
