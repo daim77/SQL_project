@@ -129,7 +129,7 @@ LEFT OUTER JOIN (
                                     ) as cc
 
                 on e.country = cc.country
-                WHERE e.year = 2015
+                WHERE e.year = 2018
                 ) as ee
 on ee.iso3 = (
 
