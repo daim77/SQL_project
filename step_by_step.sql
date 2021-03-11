@@ -9,12 +9,14 @@ SELECT cd.date,
            )
         as ISO3,
 
-       (SELECT CASE WHEN wdwd.working_days IS NOT NULL THEN
-       if(INSTR(wdwd.working_days, CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
-       ELSE
-           if(INSTR('2, 3, 4, 5, 6', CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
-        END)
-           as working_days,
+       (
+           SELECT CASE WHEN wdwd.working_days IS NOT NULL THEN
+                        if(INSTR(wdwd.working_days, CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
+                    ELSE
+                        if(INSTR('2, 3, 4, 5, 6', CAST(dayofweek(cd.date) AS char)) != 0, 1, 0)
+                    END
+           )
+        as working_days,
 
        (
            SELECT CASE
