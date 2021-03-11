@@ -2,7 +2,7 @@
 **ASSIGNMENT SECTION**  
 
 **COVID ANALYSIS with panel data**  
-keys: country, date  
+keys: country, date and _iso3_ added  
 
 **COLUMNS:**  
 
@@ -22,7 +22,7 @@ _demografic related_
 - GINI coeficient  [y 2018]
 - child mortality [per 1000 live birth in 2018]
 - population age median in 2018 [years]
-- population religion ratio -> related to total country population
+- population religion ratio -> related to total country population for every religion in the single country [%]
 - difference life expectancy 1965 compered to 2015  [years]
 
 _weather related_  
