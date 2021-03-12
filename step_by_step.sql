@@ -45,9 +45,9 @@ SELECT cd.date,
        round(cc.population_density, 2) as population_density,
        cc.median_age_2018,
 
-       round(ee.GDP / ee.population, 0) as GDP_per_capita_2015,
-       ee.gini as GINI_index_2015,
-       ee.mortaliy_under5 as child_mortality_2015,
+       round(ee.GDP / ee.population, 0) as GDP_per_capita_2018,
+       ee.gini as GINI_index_2018,
+       ee.mortaliy_under5 as child_mortality_2018,
 
         ROUND((
             SELECT le1.life_expectancy
@@ -99,10 +99,10 @@ on wdwd.iso3 = (
 
 # join table for tests problem with US and Poland only first row from tests is needed
 LEFT OUTER JOIN (
-                SELECT ct.tests_performed,
+                SELECT MIN(ct.tests_performed) as tests_performed,
                        ct.ISO,
                        ct.date
-                FROM covid19_tests as ct) as ctct
+                FROM covid19_tests as ct GROUP BY ct.date) as ctct
 on ctct.ISO = (
                 SELECT lt3.iso3
                 FROM lookup_table as lt3
@@ -152,5 +152,5 @@ on ee.iso3 = (
     )
 
 WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-07' as datetime)
-AND cd.country = 'Andorra'
+AND cd.country = 'Poland'
 ;
