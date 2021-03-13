@@ -99,13 +99,13 @@ on wdwd.iso3 = (
                 GROUP BY lt3.country
                 )
 
-# table tests problem with US and Poland only first row from tests is needed and France
+# table tests problem with US and Poland only first row from tests is needed and France, NULL values!!
 LEFT OUTER JOIN (
                     SELECT MIN(ct.tests_performed) as tests_performed,
                            ct.ISO,
                            ct.date
                     FROM covid19_tests as ct
-                    GROUP BY ct.date
+                    GROUP BY ct.country
                 ) as ctct
 on ctct.ISO = (
                     SELECT lt4.iso3
@@ -153,6 +153,8 @@ on ee.iso3 = (
                 WHERE cd.country = lt6.country AND lt6.province IS NULL
                 GROUP BY lt6.country
             )
+
+# religion table population - NULL values
 LEFT OUTER JOIN (
                     SELECT
                            MAX(CASE WHEN r.religion = 'Christianity' THEN ROUND(100 * r.population / cc3.population, 2) END) as Christianity,
@@ -176,6 +178,7 @@ LEFT OUTER JOIN (
                                     ) as cc3
                     on cc3.country = r.country
                     WHERE r.year = 2020
+                    GROUP BY r.country
 
                 ) as rr
 
