@@ -49,25 +49,27 @@ SELECT cd.date,
        ee.gini as GINI_index_2018,
        ee.mortaliy_under5 as child_mortality_2018,
 
+       rr.Christianity, rr.Islam, rr.Unaffiliated, rr.Hinduism, rr.Buddhism, rr.Folk, rr.Other, rr.Judaism,
+
         ROUND((
             SELECT le1.life_expectancy
             FROM life_expectancy as le1
             WHERE le1.year = 2015
             AND le1.iso3 = (
-                            SELECT lt.iso3
-                            FROM lookup_table as lt
-                            WHERE cd.country = lt.country AND lt.province IS NULL
-                            GROUP BY lt.country
+                            SELECT lt1.iso3
+                            FROM lookup_table as lt1
+                            WHERE cd.country = lt1.country AND lt1.province IS NULL
+                            GROUP BY lt1.country
                             ))
                     - (
                         SELECT le2.life_expectancy
                         FROM life_expectancy as le2
                         WHERE le2.year = 1965
                         AND le2.iso3 = (
-                                        SELECT lt1.iso3
-                                        FROM lookup_table as lt1
-                                        WHERE cd.country = lt1.country AND lt1.province IS NULL
-                                        GROUP BY lt1.country
+                                        SELECT lt2.iso3
+                                        FROM lookup_table as lt2
+                                        WHERE cd.country = lt2.country AND lt2.province IS NULL
+                                        GROUP BY lt2.country
                             )
                         ), 2)
             as life_exp_diff
@@ -91,66 +93,99 @@ LEFT OUTER JOIN (
                 ) as wdwd
 on wdwd.iso3 = (
 
-                SELECT lt5.iso3
-                FROM lookup_table as lt5
-                WHERE cd.country = lt5.country AND lt5.province IS NULL
-                GROUP BY lt5.country
-                )
-
-# join table for tests problem with US and Poland only first row from tests is needed
-LEFT OUTER JOIN (
-                SELECT MIN(ct.tests_performed) as tests_performed,
-                       ct.ISO,
-                       ct.date
-                FROM covid19_tests as ct GROUP BY ct.date) as ctct
-on ctct.ISO = (
                 SELECT lt3.iso3
                 FROM lookup_table as lt3
                 WHERE cd.country = lt3.country AND lt3.province IS NULL
                 GROUP BY lt3.country
                 )
+
+# table tests problem with US and Poland only first row from tests is needed and France
+LEFT OUTER JOIN (
+                    SELECT MIN(ct.tests_performed) as tests_performed,
+                           ct.ISO,
+                           ct.date
+                    FROM covid19_tests as ct
+                    GROUP BY ct.date
+                ) as ctct
+on ctct.ISO = (
+                    SELECT lt4.iso3
+                    FROM lookup_table as lt4
+                    WHERE cd.country = lt4.country AND lt4.province IS NULL
+                    GROUP BY lt4.country
+                )
 and ctct.date = cd.date
 
-# table for population
+# table population
 LEFT OUTER JOIN (
                 SELECT c.population_density,
                        c.median_age_2018,
                        c.iso3
                 FROM countries as c) as cc
 on cc.iso3 = (
-                SELECT lt2.iso3
-                FROM lookup_table as lt2
-                WHERE cd.country = lt2.country AND lt2.province IS NULL
-                GROUP BY lt2.country
+                SELECT lt5.iso3
+                FROM lookup_table as lt5
+                WHERE cd.country = lt5.country AND lt5.province IS NULL
+                GROUP BY lt5.country
         )
 
-# fetching data from econimies, indexes level 2018
+# fetching data from economies, indexes level 2018
 LEFT OUTER JOIN (
-                SELECT e.gini,
-                       e.GDP,
-                       e.population,
-                       e.mortaliy_under5,
-                       cc.iso3,
-                       e.country
-                FROM economies as e
+                    SELECT e.gini,
+                           e.GDP,
+                           e.population,
+                           e.mortaliy_under5,
+                           cc2.iso3,
+                           e.country
+                    FROM economies as e
+                    LEFT OUTER JOIN (
+                                        SELECT c2.country,
+                                               c2.iso3
+                                        FROM countries as c2
+                                    ) as cc2
 
-                LEFT OUTER JOIN (
-                                    SELECT c.country,
-                                           c.iso3
-                                    FROM countries as c
-                                    ) as cc
-
-                on e.country = cc.country
-                WHERE e.year = 2018
+                    on e.country = cc2.country
+                    WHERE e.year = 2018
                 ) as ee
 on ee.iso3 = (
 
-                SELECT lt4.iso3
-                FROM lookup_table as lt4
-                WHERE cd.country = lt4.country AND lt4.province IS NULL
-                GROUP BY lt4.country
-    )
+                SELECT lt6.iso3
+                FROM lookup_table as lt6
+                WHERE cd.country = lt6.country AND lt6.province IS NULL
+                GROUP BY lt6.country
+            )
+LEFT OUTER JOIN (
+                    SELECT
+                           MAX(CASE WHEN r.religion = 'Christianity' THEN ROUND(100 * r.population / cc3.population, 2) END) as Christianity,
+                           MAX(CASE WHEN r.religion = 'Islam' THEN ROUND(100 * r.population / cc3.population, 2) END) as Islam,
+                           MAX(CASE WHEN r.religion = 'Unaffiliated Religions' THEN ROUND(100 * r.population / cc3.population, 2) END) as Unaffiliated,
+                           MAX(CASE WHEN r.religion = 'Hinduism' THEN ROUND(100 * r.population / cc3.population, 2) END) as Hinduism,
+                           MAX(CASE WHEN r.religion = 'Buddhism' THEN ROUND(100 * r.population / cc3.population, 2) END) as Buddhism,
+                           MAX(CASE WHEN r.religion = 'Folk Religions' THEN ROUND(100 * r.population / cc3.population, 2) END) as Folk,
+                           MAX(CASE WHEN r.religion = 'Other Religions' THEN ROUND(100 * r.population / cc3.population, 2) END) as Other,
+                           MAX(CASE WHEN r.religion = 'Judaism' THEN ROUND(100 * r.population / cc3.population, 2) END) as Judaism,
+                           cc3.iso3,
+                           r.year,
+                           r.country
+                    FROM religions as r
 
-WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-07' as datetime)
-AND cd.country = 'Poland'
+                    LEFT OUTER JOIN (
+                                        SELECT c3.country,
+                                               c3.iso3,
+                                               c3.population
+                                        FROM countries as c3
+                                    ) as cc3
+                    on cc3.country = r.country
+                    WHERE r.year = 2020
+
+                ) as rr
+
+on rr.iso3 = (
+                SELECT lt7.iso3
+                FROM lookup_table as lt7
+                WHERE cd.country = lt7.country AND lt7.province IS NULL
+                GROUP BY lt7.country
+                )
+
+WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-20' as datetime)
+AND cd.country = 'Czechia'
 ;
