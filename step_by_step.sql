@@ -105,7 +105,7 @@ LEFT OUTER JOIN (
                            ct.ISO,
                            ct.date
                     FROM covid19_tests as ct
-                    GROUP BY ct.country
+                    GROUP BY ct.country, ct.date
                 ) as ctct
 on ctct.ISO = (
                     SELECT lt4.iso3
@@ -165,9 +165,7 @@ LEFT OUTER JOIN (
                            MAX(CASE WHEN r.religion = 'Folk Religions' THEN ROUND(100 * r.population / cc3.population, 2) END) as Folk,
                            MAX(CASE WHEN r.religion = 'Other Religions' THEN ROUND(100 * r.population / cc3.population, 2) END) as Other,
                            MAX(CASE WHEN r.religion = 'Judaism' THEN ROUND(100 * r.population / cc3.population, 2) END) as Judaism,
-                           cc3.iso3,
-                           r.year,
-                           r.country
+                           cc3.iso3
                     FROM religions as r
 
                     LEFT OUTER JOIN (
