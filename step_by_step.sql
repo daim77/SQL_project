@@ -46,7 +46,7 @@ SELECT cd.date,
        round(cc.population_density, 2) as population_density,
        cc.median_age_2018,
 
-       round(ee.GDP / ee.population, 0) as GDP_per_capita_2018,
+       round(ee.GDP / ee.population, 2) as GDP_per_capita_2018,
        ee.gini as GINI_index_2018,
        ee.mortaliy_under5 as child_mortality_2018,
 
@@ -75,7 +75,8 @@ SELECT cd.date,
                         ), 2)
             as life_exp_diff,
 
-        ww.gust as wind_gust
+        ROUND((ww.temp_6 + ww.temp_15 + 2*ww.temp_21)/4, 2) as temp_avrg_day,
+        ROUND(ww.gust, 2) as wind_gust
 
 FROM covid19_basic_differences as cd
 
@@ -191,9 +192,12 @@ on rr.iso3 = (
 
 # table weather
 LEFT OUTER JOIN (
-                    SELECT DISTINCT wx.date,
-                                    AVG(wx.gust) as gust,
-                                    cc4.iso3
+                    SELECT  wx.date,
+                            MAX(CASE WHEN wx.hour = 6 THEN wx.temp END) as temp_6,
+                            MAX(CASE WHEN wx.hour = 15 THEN wx.temp END) as temp_15,
+                            MAX(CASE WHEN wx.hour = 21 THEN wx.temp END) as temp_21,
+                            AVG(wx.gust) as gust,
+                            cc4.iso3
                     FROM weather as wx
 
                     LEFT OUTER JOIN (
@@ -214,5 +218,5 @@ on ww.iso3 = (
 AND ww.date = cd.date
 
 WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-10' as datetime)
-AND cd.country = 'Czechia'
+AND cd.country = 'Sweden'
 ;
