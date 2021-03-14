@@ -236,7 +236,4 @@ on ww.iso3 = (
                 GROUP BY lt8.country
                 )
 AND ww.date = cd.date
-
-WHERE cd.date BETWEEN '2020-01-01' and '2020-06-30'
-AND cd.country like 'B%'
 ;
