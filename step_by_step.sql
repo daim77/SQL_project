@@ -1,3 +1,5 @@
+CREATE TABLE t_martin_danek_project_SQL_final as
+
 SELECT cd.date,
        cd.country,
 
@@ -235,6 +237,6 @@ on ww.iso3 = (
                 )
 AND ww.date = cd.date
 
-WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-10' as datetime)
-AND cd.country = 'Sweden'
+WHERE cd.date BETWEEN '2020-01-01' and '2020-06-30'
+AND cd.country like 'B%'
 ;
