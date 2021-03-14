@@ -76,6 +76,7 @@ SELECT cd.date,
             as life_exp_diff,
 
         ROUND((ww.temp_6 + ww.temp_15 + 2*ww.temp_21)/4, 2) as temp_avrg_day,
+        ((rain_0 + rain_3 + rain_6 + rain_9 + rain_12 + rain_15 + rain_18 + rain_21) * 3) as rain_hrs,
         ROUND((ww.gust_6 + ww.gust_9 + ww.gust_12 + ww.gust_15 + ww.gust_18 + ww.gust_21)/6, 2) as wind_gust
 
 FROM covid19_basic_differences as cd
@@ -197,6 +198,15 @@ LEFT OUTER JOIN (
                             MAX(CASE WHEN wx.hour = 6 THEN wx.temp END) as temp_6,
                             MAX(CASE WHEN wx.hour = 15 THEN wx.temp END) as temp_15,
                             MAX(CASE WHEN wx.hour = 21 THEN wx.temp END) as temp_21,
+
+                            MAX(CASE WHEN wx.hour = 0 THEN IF(wx.rain != 0, 1, 0) END) as rain_0,
+                            MAX(CASE WHEN wx.hour = 3 THEN IF(wx.rain != 0, 1, 0) END) as rain_3,
+                            MAX(CASE WHEN wx.hour = 6 THEN IF(wx.rain != 0, 1, 0) END) as rain_6,
+                            MAX(CASE WHEN wx.hour = 9 THEN IF(wx.rain != 0, 1, 0) END) as rain_9,
+                            MAX(CASE WHEN wx.hour = 12 THEN IF(wx.rain != 0, 1, 0) END) as rain_12,
+                            MAX(CASE WHEN wx.hour = 15 THEN IF(wx.rain != 0, 1, 0) END) as rain_15,
+                            MAX(CASE WHEN wx.hour = 18 THEN IF(wx.rain != 0, 1, 0) END) as rain_18,
+                            MAX(CASE WHEN wx.hour = 21 THEN IF(wx.rain != 0, 1, 0) END) as rain_21,
 
                             MAX(CASE WHEN wx.hour = 6 THEN wx.gust END) as gust_6,
                             MAX(CASE WHEN wx.hour = 9 THEN wx.gust END) as gust_9,

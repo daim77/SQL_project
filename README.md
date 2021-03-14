@@ -74,7 +74,9 @@ Wrong data in religion table (Islam population in Afghanistan > total population
 City is used as key bridge to countries table. There is inconsistency between several capitals like Prague vs Praha, Wien vs Vienna atc...
 This problem leads to NULL values for all weather characteristics!  
 average daytime temperature calculated according standard meteorological formula.  
-Average gust calculated as average gust between 6 a.m. and 9 p.m.  
+Average gust calculated as average gust between 6 a.m. and 9 p.m.  For more precise calculation WGF is needed.
+Due to 3hrs interval measurement - rain is expected also 1.5 hr before raining time and same after.  
+
 
 
 
