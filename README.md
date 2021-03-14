@@ -59,4 +59,6 @@ Majority of values are available in year 2015 in table economies. GINI index is 
 But y2018 chosen due to client requirements  
 ISO3 country code added as key  
 
+Wrong data in religion table (Islam population in Afghanistan > total population)
+
 
