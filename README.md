@@ -44,7 +44,7 @@ _t_martin_danek_project_SQL_working_days /from WIKI_
 
 **required output**  
 t_{jméno}_{příjmení}_project_SQL_final  
-prepared for one select operation
+prepared for one SQL SELECT operation
 
 ## SOLUTION  
 UNITS are in the square brackets in an assignment section  
@@ -73,5 +73,8 @@ Wrong data in religion table (Islam population in Afghanistan > total population
 **WEATHER**  
 City is used as key bridge to countries table. There is inconsistency between several capitals like Prague vs Praha, Wien vs Vienna atc...
 This problem leads to NULL values for all weather characteristics!  
+average daytime temperature calculated according standard meteorological formula.  
+Average gust calculated as average gust between 6 a.m. and 9 p.m.  
+
 
 
