@@ -42,6 +42,7 @@ SELECT cd.date,
 
        cd.confirmed,
        ctct.tests_performed,
+
        round(cc.population_density, 2) as population_density,
        cc.median_age_2018,
 
@@ -72,8 +73,9 @@ SELECT cd.date,
                                         GROUP BY lt2.country
                             )
                         ), 2)
-            as life_exp_diff
+            as life_exp_diff,
 
+        ww.gust as wind_gust
 
 FROM covid19_basic_differences as cd
 
@@ -187,6 +189,30 @@ on rr.iso3 = (
                 GROUP BY lt7.country
                 )
 
-WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-20' as datetime)
+# table weather
+LEFT OUTER JOIN (
+                    SELECT DISTINCT wx.date,
+                                    AVG(wx.gust) as gust,
+                                    cc4.iso3
+                    FROM weather as wx
+
+                    LEFT OUTER JOIN (
+                                        SELECT c4.iso3,
+                                                c4.capital_city
+                                        FROM countries as c4
+                                        ) as cc4
+                    on wx.city = cc4.capital_city
+                    GROUP BY wx.city, wx.date
+                ) as ww
+
+on ww.iso3 = (
+                SELECT lt8.iso3
+                FROM lookup_table as lt8
+                WHERE cd.country = lt8.country AND lt8.province IS NULL
+                GROUP BY lt8.country
+                )
+AND ww.date = cd.date
+
+WHERE cd.date BETWEEN CAST('2020-10-01' as datetime) and CAST('2020-10-10' as datetime)
 AND cd.country = 'Czechia'
 ;

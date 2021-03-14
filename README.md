@@ -28,7 +28,7 @@ _demografic related_
 _weather related_  
 - average daylight temperature  ! SR to SS
 - amount of hours with any precipitations
-- max gust wind effort during day
+- max gust wind effort during day [km per hour]
 
 **data source**  
 countries  
