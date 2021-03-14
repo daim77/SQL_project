@@ -76,7 +76,7 @@ SELECT cd.date,
             as life_exp_diff,
 
         ROUND((ww.temp_6 + ww.temp_15 + 2*ww.temp_21)/4, 2) as temp_avrg_day,
-        ROUND(ww.gust, 2) as wind_gust
+        ROUND((ww.gust_6 + ww.gust_9 + ww.gust_12 + ww.gust_15 + ww.gust_18 + ww.gust_21)/6, 2) as wind_gust
 
 FROM covid19_basic_differences as cd
 
@@ -193,10 +193,18 @@ on rr.iso3 = (
 # table weather
 LEFT OUTER JOIN (
                     SELECT  wx.date,
+
                             MAX(CASE WHEN wx.hour = 6 THEN wx.temp END) as temp_6,
                             MAX(CASE WHEN wx.hour = 15 THEN wx.temp END) as temp_15,
                             MAX(CASE WHEN wx.hour = 21 THEN wx.temp END) as temp_21,
-                            AVG(wx.gust) as gust,
+
+                            MAX(CASE WHEN wx.hour = 6 THEN wx.gust END) as gust_6,
+                            MAX(CASE WHEN wx.hour = 9 THEN wx.gust END) as gust_9,
+                            MAX(CASE WHEN wx.hour = 12 THEN wx.gust END) as gust_12,
+                            MAX(CASE WHEN wx.hour = 15 THEN wx.gust END) as gust_15,
+                            MAX(CASE WHEN wx.hour = 18 THEN wx.gust END) as gust_18,
+                            MAX(CASE WHEN wx.hour = 21 THEN wx.gust END) as gust_21,
+
                             cc4.iso3
                     FROM weather as wx
 
