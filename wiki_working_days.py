@@ -2,7 +2,6 @@ import requests
 import bs4
 import pandas as pd
 
-
 import sqlalchemy as db
 
 
@@ -79,6 +78,7 @@ def data_to_frame(data):
 def non_regular(df):
     non_reg_country = \
         list(df[df['working_days'] != '2, 3, 4, 5, 6']['country'].values)
+    print(non_reg_country)
     return
 
 
