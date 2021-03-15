@@ -1,4 +1,4 @@
-CREATE TABLE t_martin_danek_project_SQL_final as
+CREATE TABLE t_martin_danek_project_SQL_final AS
 
 SELECT cd.date,
        cd.country,
@@ -236,4 +236,6 @@ on ww.iso3 = (
                 GROUP BY lt8.country
                 )
 AND ww.date = cd.date
+
+ORDER BY cd.date
 ;

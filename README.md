@@ -61,7 +61,7 @@ coding is as SQL DAYOFWEEK() 1: sunday, 7: saturday
 IF country NOT in this table THEN saturday and sunday is weekend.  
 
 
-**ECONOMY**
+**ECONOMY**  
 Majority of values are available in year 2015 in table economies. GINI index is available for MAX countries for example but still only for 80..  
 But y2018 chosen due to client requirements  
 
