@@ -105,7 +105,6 @@ on wdwd.iso3 = (
                 GROUP BY lt3.country
                 )
 
-# table tests problem with US and Poland only first row from tests is needed and France, NULL values!!
 LEFT OUTER JOIN (
                     SELECT MIN(ct.tests_performed) as tests_performed,
                            ct.ISO,
