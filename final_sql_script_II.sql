@@ -6,8 +6,8 @@ CREATE TABLE
         date date,
         country varchar(255),
         confirmed int,
-        working_days int,
-        year_season int,
+        working_days tinyint UNSIGNED,
+        year_season tinyint UNSIGNED,
         tests_performed int,
         index country_index(country),
         index date_index(date)
