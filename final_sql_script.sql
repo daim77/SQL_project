@@ -1,3 +1,4 @@
+# duration 3hrs 35 min
 CREATE TABLE t_martin_danek_project_SQL_final AS
 
 SELECT cd.date,
