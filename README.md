@@ -18,7 +18,7 @@ _time related_
 
 _demografic related_
 - density population [habitant / km2]
-- GDP per habitant [year 2018, USD/person]
+- GDP per capita [year 2018, USD/person]
 - GINI coeficient  [y 2018]
 - child mortality [per 1000 live birth in 2018]
 - population age median in 2018 [years]
