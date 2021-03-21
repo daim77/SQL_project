@@ -1,3 +1,4 @@
+# duration 26 min
 DROP TABLE IF EXISTS t_martin_danek_project_SQL_final_II;
 
 CREATE TABLE
