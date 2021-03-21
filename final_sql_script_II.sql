@@ -1,17 +1,27 @@
-# duration 31 min
 DROP TABLE IF EXISTS t_martin_danek_project_SQL_final_II;
 
-CREATE TABLE t_martin_danek_project_SQL_final_II AS
+CREATE TABLE
+    t_martin_danek_project_SQL_final_II (
+        date date,
+        country varchar(255),
+        confirmed int,
+        working_days int,
+        year_season int,
+        tests_performed int,
+        index country_index(country),
+        index date_index(date)
+
+) AS
 
 WITH country_key as (
     SELECT
         c.country,
         c.iso3,
-        round(c.population_density, 2) as population_density,
+        ROUND(c.population_density, 2) as population_density,
         c.median_age_2018,
         c.population,
 
-        round(ee.GDP / ee.population, 2) as GDP_per_capita_2018,
+        ROUND(ee.GDP / ee.population, 2) as GDP_per_capita_2018,
         ee.gini,
         ee.mortaliy_under5,
 
@@ -163,6 +173,7 @@ WITH country_key as (
     ck.mortaliy_under5,
 
     ris.Christianity, ris.Islam, ris.Judaism, ris.Hinduism, ris.Buddhism, ris.Folk, ris.Unaffiliated, ris.Other,
+
     ROUND(ck.life_exp_2015 - ck.life_exp_1965, 2) as life_exp_improvement,
 
     ROUND((wis.temp_6 + wis.temp_15 + 2*wis.temp_21)/4, 2) as temp_avrg_day,
@@ -183,11 +194,11 @@ WITH country_key as (
 
     LEFT OUTER JOIN (
         SELECT
-               MIN(ct.tests_performed) as tests_performed,
+               ct.tests_performed,
                ct.ISO,
                ct.date
         FROM covid19_tests as ct
-        GROUP BY ct.country, ct.date
+        WHERE entity = 'tests performed'
     ) as ctct
     on ctct.ISO = ck.iso3 and ctct.date = cd.date
 
@@ -196,7 +207,6 @@ WITH country_key as (
 
     LEFT OUTER JOIN weather_iso as wis
     on wis.iso3 = ck.iso3 and wis.date = cd.date
-
 ;
 
 
