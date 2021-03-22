@@ -6,6 +6,7 @@ CREATE TABLE
     t_martin_danek_project_SQL_final_IV (
         date date,
         country varchar(255),
+        iso3 varchar(3),
         confirmed int,
         working_days tinyint UNSIGNED,
         year_season tinyint UNSIGNED,
@@ -139,6 +140,7 @@ WITH country_key as (
     SELECT
         cd.date,
         cd.country,
+        cd.iso3,
         cd.confirmed,
 
     (
