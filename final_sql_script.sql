@@ -1,4 +1,4 @@
-# duration 8 min
+# duration 45 s
 
 DROP TABLE IF EXISTS t_martin_danek_project_SQL_final;
 
