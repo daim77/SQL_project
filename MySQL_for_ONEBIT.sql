@@ -2,6 +2,8 @@
 
 DROP TABLE IF EXISTS t_martin_danek_project_SQL_final;
 
+SET collation_connection = 'utf8_general_ci';
+
 CREATE TABLE
     t_martin_danek_project_SQL_final (
         date date,
