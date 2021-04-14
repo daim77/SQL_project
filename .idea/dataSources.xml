@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:mariadb://data.engeto.com:3306/data</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="lamikokocz1@itrvalky.cz" uuid="154c6de5-6ef6-423e-ad4f-bd5dfa3a63e5">
+    <data-source source="LOCAL" name="lamikoko" uuid="32476bd5-3b7d-427c-950a-7bd9391577c0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://itrvalky.cz:3306/lamikokocz1</jdbc-url>
+      <jdbc-url>jdbc:mysql://lamikoko.cz:3306/lamikokocz1</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
